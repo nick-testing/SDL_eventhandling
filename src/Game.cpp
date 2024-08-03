@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <string>
 
 Game::Game(): 
     window(nullptr), 
@@ -32,17 +33,21 @@ bool Game::Init() {
     return success;
 }
 
-bool Game::LoadMedia() {
+bool Game::LoadMedia(const char* filepath) {
     bool success = true;
 
     // Load image
-    imgSurface = SDL_LoadBMP("assets/helloworld.bmp");
+    imgSurface = SDL_LoadBMP(filepath);
     if (!imgSurface) {
         std::cerr << "SDL: window creation failed. Error: " << SDL_GetError() << std::endl;
         success = false;
     }
 
     return success;
+}
+
+void Game::EventHandler() {
+    
 }
 
 void Game::Close() {
@@ -59,13 +64,11 @@ void Game::Close() {
 }
 
 void Game::Run() {
-    if (!Init())
+    if (!Init()) {
         std:: cerr << "Initialization failed";
+    }
     else {
-        if (!LoadMedia())
-            std::cerr << "Media loading failed" << std::endl;
-        else
-            EventHandler();
+        EventHandler();
     }
 
     Close();

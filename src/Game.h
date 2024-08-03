@@ -23,7 +23,7 @@ private:
     SDL_Surface* imgSurface;
 
     bool Init();
-    bool LoadMedia();
+    bool LoadMedia(const char*);
     void EventHandler();
     void Close();
 };
