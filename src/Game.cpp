@@ -47,7 +47,28 @@ bool Game::LoadMedia(const char* filepath) {
 }
 
 void Game::EventHandler() {
+    SDL_Event e;
+    bool quit = false; 
     
+    while(!quit) {
+        while(SDL_PollEvent(&e)) {
+            switch(e.type) {
+                case SDL_KEYDOWN:
+                    LoadMedia("assets/keyboard.bmp");
+                    break;
+                case SDL_MOUSEBUTTONDOWN:
+                    LoadMedia("assets/mouse.bmp");
+                    break;
+                case SDL_QUIT:
+                    quit = true;
+            }
+      
+            // Update surface with appropriate image
+            SDL_BlitSurface(imgSurface, nullptr, screenSurface, nullptr);
+
+            SDL_UpdateWindowSurface(window);
+        } 
+    }
 }
 
 void Game::Close() {
