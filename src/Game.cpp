@@ -88,7 +88,10 @@ void Game::EventHandler() {
 }
 
 void Game::Close() {
-    // TODO: deallocate surfaces
+    for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; ++i) {
+        SDL_FreeSurface(keyPressedSurfaces[i]);
+        keyPressedSurfaces[i] = nullptr;
+    }
     
     // Destroy window
     SDL_DestroyWindow(window);
