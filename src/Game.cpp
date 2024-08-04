@@ -4,7 +4,7 @@
 
 // Checks for errors in surface allocation
 static bool checkSurface(const SDL_Surface* surface) {
-    if (surface == nullptr) {
+    if (nullptr == surface) {
         std::cerr << "Surface loading failed. Error: " << SDL_GetError() << std::endl;
         return false;
     }
@@ -70,17 +70,44 @@ SDL_Surface* Game::loadSurface(const char* path) {
 }
 
 void Game::EventHandler() {
+    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT];
     SDL_Event e;
-    bool quit = false; 
+    bool quit = false;
     
     while(!quit) {
         while(SDL_PollEvent(&e)) {
-            switch(e.type) {
-                
+            if (SDL_QUIT == e.type) {
+                quit = true;
             }
-      
+            else if (SDL_MOUSEBUTTONDOWN == e.type) {
+                currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_MOUSE];
+            }
+            else if (SDL_KEYDOWN == e.type) {
+                switch(e.key.keysym.sym) {
+                    case SDLK_UP:
+                    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_UP];
+                    break;
+
+                    case SDLK_DOWN:
+                    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_DOWN];
+                    break;
+
+                    case SDLK_LEFT:
+                    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_LEFT];
+                    break;
+                    
+                    case SDLK_RIGHT:
+                    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT];
+                    break;
+
+                    default:
+                    currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+                    break;
+                }
+            }
+                
             // Update surface with appropriate image
-            // SDL_BlitSurface(imgSurface, nullptr, screenSurface, nullptr);
+            SDL_BlitSurface(currentSurface, nullptr, screenSurface, nullptr);
 
             SDL_UpdateWindowSurface(window);
         } 
