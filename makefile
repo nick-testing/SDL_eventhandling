@@ -9,7 +9,7 @@ all: game.out
 game.out: $(OBJ)
 	$(CC) $(OBJ) -o game.out $(SDLFLAGS)
 
- %.o: $(SRC)%.cpp
+%.o: $(SRC)%.cpp
 	$(CC) $<  $(CPPFLAGS) -o $(OBJ)
 
 clean:
