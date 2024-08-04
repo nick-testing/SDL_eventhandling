@@ -14,7 +14,8 @@ static bool checkSurface(const SDL_Surface* surface) {
 
 Game::Game(): 
     window(nullptr), 
-    screenSurface(nullptr) {}
+    screenSurface(nullptr),
+    currentSurface(nullptr) {}
 
 bool Game::Init() {
     bool success = true;
