@@ -4,6 +4,17 @@
 typedef struct SDL_Window SDL_Window;
 typedef struct SDL_Surface SDL_Surface;
 
+// Key press surfaces constants
+enum KeyPressSurface {
+    KEY_PRESS_SURFACE_DEFAULT,
+    KEY_PRESS_SURFACE_UP,
+    KEY_PRESS_SURFACE_DOWN,
+    KEY_PRESS_SURFACE_LEFT,
+    KEY_PRESS_SURFACE_RIGHT,
+    MOUSE_PRESS_SURFACE,
+    KEY_PRESS_SURFACE_TOTAL
+};
+
 class Game {
 public:
     Game();
@@ -19,12 +30,13 @@ private:
     // Surface contained by the window
     SDL_Surface* screenSurface;
 
-    // Image that will be shown on the screen
-    SDL_Surface* imgSurface;
+    // Images that will be shown on the screen
+    SDL_Surface* keyPressedSurfaces[KEY_PRESS_SURFACE_TOTAL];
 
     bool Init();
-    bool LoadMedia(const char*);
+    bool LoadMedia();
     void EventHandler();
+    SDL_Surface* loadSurface(const char*);
     void Close();
 };
 
