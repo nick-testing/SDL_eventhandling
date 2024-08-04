@@ -33,6 +33,9 @@ private:
     // Images that will be shown on the screen
     SDL_Surface* keyPressedSurfaces[KEY_PRESS_SURFACE_TOTAL];
 
+    // Currently displayed surface
+    SDL_Surface* currentSurface = nullptr;
+
     bool Init();
     bool LoadMedia();
     void EventHandler();
