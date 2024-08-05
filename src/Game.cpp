@@ -81,7 +81,13 @@ SDL_Surface* Game::loadSurface(const char* path) {
 void Game::EventHandler() {
     currentSurface = keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT];
     SDL_Event e;
+    SDL_Rect stretchRect;
     bool quit = false;
+
+    stretchRect.x = 0;
+    stretchRect.y = 0;
+    stretchRect.w = SCREEN_WIDTH;
+    stretchRect.h = SCREEN_HEIGHT;
     
     while(!quit) {
         while(SDL_PollEvent(&e)) {
@@ -114,10 +120,11 @@ void Game::EventHandler() {
                     break;
                 }
             }
-                
+            
             // Update surface with appropriate image
-            SDL_BlitSurface(currentSurface, nullptr, screenSurface, nullptr);
+            //SDL_BlitSurface(currentSurface, nullptr, screenSurface, nullptr);
 
+            SDL_BlitScaled(currentSurface, nullptr, screenSurface, &stretchRect);
             SDL_UpdateWindowSurface(window);
         } 
     }
