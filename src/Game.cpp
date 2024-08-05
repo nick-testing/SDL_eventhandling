@@ -72,9 +72,8 @@ SDL_Surface* Game::loadSurface(const char* path) {
 
     if (checkSurface(loadedSurface)) {
         optimizedSurface = SDL_ConvertSurface(loadedSurface, screenSurface->format, 0);
+        SDL_FreeSurface(loadedSurface);
     }
-
-    SDL_FreeSurface(loadedSurface);
 
     return optimizedSurface;
 }
