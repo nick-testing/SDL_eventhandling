@@ -1,6 +1,6 @@
 CC= g++
 CPP_FLAGS= -pedantic
-LINKER_FLAGS= -lSDL2
+LINKER_FLAGS= -lSDL2 -lSDL2_image
 SRC_DIR= ./src/
 OBJ_NAME= $(SRC_DIR)main.o $(SRC_DIR)Game.o
 
