@@ -39,7 +39,7 @@ private:
     bool Init();
     bool LoadMedia();
     void EventHandler();
-    SDL_Surface* loadSurface(const char*);
+    SDL_Surface* LoadSurface(const char*);
     void Close();
 };
 

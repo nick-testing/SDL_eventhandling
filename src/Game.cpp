@@ -73,7 +73,7 @@ bool Game::LoadMedia() {
 }
 
 SDL_Surface* Game::loadSurface(const char* path) {
-    SDL_Surface* loadedSurface = SDL_LoadBMP(path);
+    SDL_Surface* loadedSurface = IMG_Load(path);
     SDL_Surface* optimizedSurface = nullptr;
 
     if (checkSurface(loadedSurface)) {
