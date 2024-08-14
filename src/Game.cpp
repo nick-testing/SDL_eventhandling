@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 
 // Checks for errors in surface allocation
@@ -34,8 +35,13 @@ bool Game::Init() {
             success = false;
         }
         else {
-            // Get window surface
-            screenSurface = SDL_GetWindowSurface(window);
+            if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+                std::cerr << "SDL_Image initialization failed, error: " << SDL_GetError() << std::endl;
+                success = false;
+            }
+            else {
+                screenSurface = SDL_GetWindowSurface(window);
+            }
         }
     }
 
@@ -142,6 +148,9 @@ void Game::Close() {
 
     // Quit SDL subsystems
     SDL_Quit();
+    
+    // Quit SDL_Image subsystems
+    IMG_Quit();
 }
 
 void Game::Run() {
