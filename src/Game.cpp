@@ -51,28 +51,28 @@ bool Game::Init() {
 bool Game::LoadMedia() {
     bool success = true;
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT] = loadSurface("assets/default.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT] = LoadSurface("assets/default.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]);
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_UP] = loadSurface("assets/up.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_UP] = LoadSurface("assets/up.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_UP]);
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_DOWN] = loadSurface("assets/down.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_DOWN] = LoadSurface("assets/down.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]);
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_LEFT] = loadSurface("assets/left.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_LEFT] = LoadSurface("assets/left.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]);
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT] = loadSurface("assets/right.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT] = LoadSurface("assets/right.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]);
 
-    keyPressedSurfaces[KEY_PRESS_SURFACE_MOUSE] = loadSurface("assets/mouse.bmp");
+    keyPressedSurfaces[KEY_PRESS_SURFACE_MOUSE] = LoadSurface("assets/mouse.bmp");
     success = checkSurface(keyPressedSurfaces[KEY_PRESS_SURFACE_MOUSE]);
 
     return success;
 }
 
-SDL_Surface* Game::loadSurface(const char* path) {
+SDL_Surface* Game::LoadSurface(const char* path) {
     SDL_Surface* loadedSurface = IMG_Load(path);
     SDL_Surface* optimizedSurface = nullptr;
 
