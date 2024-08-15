@@ -127,9 +127,6 @@ void Game::EventHandler() {
                 }
             }
             
-            // Update surface with appropriate image
-            //SDL_BlitSurface(currentSurface, nullptr, screenSurface, nullptr);
-
             SDL_BlitScaled(currentSurface, nullptr, screenSurface, &stretchRect);
             SDL_UpdateWindowSurface(window);
         } 
